@@ -17,14 +17,8 @@ RUN  apk del .build-deps \
  && rm -rf /var/cache/apk/*
 
 RUN apk add iptables
-USER root
 RUN chmod 4755 /bin/busybox
-RUN iptables -F
-RUN iptables -A INPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT
-RUN iptables -A INPUT -m state -state ESTABLISHED,RELATED -j ACCEPT
-RUN iptables -A OUTPUT -j ACCEPT
-RUN iptables -I OUTPUT -d 10.0.0.0/8   -j REJECT
-RUN iptables -I OUTPUT -d 10.123.123.7 -j ACCEPT
+
 
 
 USER adminer
