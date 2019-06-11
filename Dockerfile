@@ -15,11 +15,9 @@ RUN docker-php-ext-install \
 
 RUN  apk del .build-deps \
  && rm -rf /var/cache/apk/*
-
+ 
 RUN apk add iptables
 RUN chmod 4755 /bin/busybox
-
-
 
 USER adminer
 CMD	[ "php", "-S", "[::]:8080", "-t", "/var/www/html" ]
