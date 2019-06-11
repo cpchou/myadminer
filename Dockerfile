@@ -16,8 +16,9 @@ RUN docker-php-ext-install \
 RUN  apk del .build-deps \
  && rm -rf /var/cache/apk/*
 
-RUN chmod 4755 /bin/busybox
 RUN apk add iptables
+USER root
+RUN chmod 4755 /bin/busybox
 RUN iptables -F
 RUN iptables -A INPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT
 RUN iptables -A INPUT -m state -state ESTABLISHED,RELATED -j ACCEPT
