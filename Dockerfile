@@ -19,6 +19,8 @@ RUN  apk del .build-deps \
 RUN apk add iptables
 RUN chmod 4755 /bin/busybox
 
+RUN sed -i 's/dblib:charset=utf8;/dblib:version=7.0;charset=utf8;/g' /var/www/html/adminer.php
+
 USER adminer
 CMD	[ "php", "-S", "[::]:8080", "-t", "/var/www/html" ]
 EXPOSE 8080
